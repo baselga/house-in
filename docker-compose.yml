@@ -1,0 +1,15 @@
+services:
+  node:
+    container_name: my-home
+    image: node:20-alpine
+    working_dir: /var/www/app
+    volumes:
+      - ".:/var/www/app"
+    ports:
+      - "5173:5173"
+    tty: true
+    networks:
+      my_home_network:
+
+networks:
+  my_home_network:
