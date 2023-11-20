@@ -1,12 +1,13 @@
 import EdibleList from '../EdibleList/EdibleList'
-import './App.css'
 
 function App() {
   
   return (
     <>
-      <header>
-        <h1>House In</h1>
+      <header className="bg-slate-600 text-white py-2 flex justify-center">
+        <div className="container">
+          <h1 className="text-3xl font-bold">House In</h1>
+        </div>
       </header>
       <EdibleList />
     </>
