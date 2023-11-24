@@ -1,7 +1,7 @@
 services:
   node:
     container_name: my-home
-    image: node:20-alpine
+    image: node:lts-slim
     working_dir: /var/www/app
     volumes:
       - ".:/var/www/app"

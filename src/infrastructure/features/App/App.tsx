@@ -1,13 +1,26 @@
-import EdibleList from '../EdibleList/EdibleList'
-import Header from '../Header'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import EdiblePage from '../pages/EdiblePage';
+import HomePage from '../pages/HomePage';
+
+const router = createBrowserRouter([
+  {
+    path: "/despensa",
+    element: <EdiblePage />,
+  },
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+]);
 
 function App() {
   
   return (
-    <>
-      <Header />
-      <EdibleList />
-    </>
+    <RouterProvider router={router} />
   )
 }
 

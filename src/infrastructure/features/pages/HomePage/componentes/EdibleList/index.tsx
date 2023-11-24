@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { Edible } from "../../../domain/models/Edible";
-import { edibleService } from "../../../domain/services/Edible.service";
+
+import { Edible } from "@/domain/models/Edible";
+import { edibleService } from "@/domain/services/Edible.service";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/infrastructure/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/infrastructure/components/ui/table";
 
@@ -21,7 +22,7 @@ const EdibleList: React.FC = () => {
   }, [getEdibles]);
 
   return (
-    <div className="container mx-auto py-4">
+    <div className="mx-auto pb-4">
       <Card>
         <CardHeader>
           <CardTitle>Despensa</CardTitle>
