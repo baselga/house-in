@@ -1,5 +1,5 @@
 
-export interface QueryType {
+export interface queryType {
   pagination?: {
     page?: number
     perPage?: number

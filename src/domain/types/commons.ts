@@ -1,0 +1,1 @@
+export type stockLevel = "low" | "medium" | "high"
