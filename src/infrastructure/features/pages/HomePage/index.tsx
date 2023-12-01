@@ -4,7 +4,9 @@ import EdibleList from "./componentes/EdibleList"
 const HomePage = () => {
   return (
     <LayoutPage>
-      <EdibleList />
+      <div className="grid grid-cols-2">
+        <EdibleList />
+      </div>
     </LayoutPage>    
   )
 }

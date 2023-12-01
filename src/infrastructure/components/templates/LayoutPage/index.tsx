@@ -2,7 +2,7 @@ import Header from "../../organims/Header";
 
 type LayoutPageProps = { children?: React.ReactNode };
 
-const LayoutPage: React.FC<LayoutPageProps> = ({ children }) => {
+const LayoutPage = ({ children }: LayoutPageProps) => {
   return (
     <>
       <Header />

@@ -1,10 +1,11 @@
+import formatQueryParams, { QueryParams } from "./formatQuery"
 
 const headers = {
   'Content-Type': 'application/json'
 }
 
-const get = async <T>(url: string) => {
-  const response = await fetch(url, {
+const get = async <T>(url: string, queryParams?: QueryParams) => {
+  const response = await fetch(`${url}?${formatQueryParams(queryParams)}`, {
     method: 'GET',
     headers
   })

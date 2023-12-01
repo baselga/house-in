@@ -6,6 +6,10 @@ export type Edible = {
   id: EdibleId,
   name: string,
   stock: number,
-  categorires?: Array<EdibleCategoryId>
+  minStock: number,
+  optimalStock: number,
+  categorires?: Array<EdibleCategoryId>  
   trash: boolean
 }
+
+export type EdibleStockLevel = "low" | "medium" | "high"

@@ -1,27 +1,27 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { SectionKey, SECTIONS } from "@/infrastructure/config/sections";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from 'react-query/devtools'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import EdiblePage from '../pages/EdiblePage';
-import HomePage from '../pages/HomePage';
+const router = createBrowserRouter(
+  Object.keys(SECTIONS).map((key) => {
+    const sectionConfig = SECTIONS[key as SectionKey]
+    return {
+      path: sectionConfig.path,
+      element: sectionConfig.view
+    }
+  })
+);
 
-const router = createBrowserRouter([
-  {
-    path: "/despensa",
-    element: <EdiblePage />,
-  },
-  {
-    path: "/",
-    element: <HomePage />,
-  },
-]);
+const queryClient = new QueryClient()
 
-function App() {
-  
-  return (
-    <RouterProvider router={router} />
+function App() {  
+  return (    
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   )
 }
 
-export default App
+export default App;

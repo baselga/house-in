@@ -2,6 +2,7 @@ services:
   node:
     container_name: my-home
     image: node:lts-slim
+    user: "1000:1000"
     working_dir: /var/www/app
     volumes:
       - ".:/var/www/app"
