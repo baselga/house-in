@@ -1,5 +1,5 @@
 import LayoutPage from "@/presentation/components/templates/LayoutPage"
-import EdibleList from "./componentes/EdibleList"
+import EdibleList from "./components/EdibleList"
 
 const HomePage = () => {
   return (

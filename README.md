@@ -32,3 +32,7 @@ export default {
 ## UI libray
 
 https://ui.shadcn.com/
+
+## Icons library
+
+https://www.radix-ui.com/icons

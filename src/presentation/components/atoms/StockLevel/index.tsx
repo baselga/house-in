@@ -9,7 +9,7 @@ const StockLevel = ({ level }: StockLevelProps) => {
     return <div className="inline-block w-5 h-5 rounded-sm bg-red-500" />;
   }
   if (level === "medium") {
-    return <div className="inline-block w-5 h-5 rounded-sm bg-orange-500" />;
+    return <div className="inline-block w-5 h-5 rounded-sm bg-yellow-500" />;
   }
   if (level === "high") {
     return <div className="inline-block w-5 h-5 rounded-sm bg-green-500" />;

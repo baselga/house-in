@@ -39,7 +39,7 @@ const EdibleList: React.FC = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {edibles?.map((edible) => (
+            {edibles?.data?.map((edible) => (
               <TableRow key={edible.id}>
                 <TableCell>{edible.name}</TableCell>
                 <TableCell>{edible.stock}</TableCell>

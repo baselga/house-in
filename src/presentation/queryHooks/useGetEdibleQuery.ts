@@ -1,10 +1,10 @@
-import { edibleService } from "@/domain/entities/Edible/Edible.service";
-import { queryType } from "@/domain/types/query";
+import { edibleQueryType, edibleService } from "@/domain/entities/Edible/Edible.service";
 import { useQuery } from "react-query";
 
-const useGetEdibleQuery = (props: queryType = {}) => {  
-  const { pagination } = props
-  const respEdibleQuery = useQuery(["edible", "list", pagination], () =>
+const useGetEdibleQuery = (props: edibleQueryType = {}) => {  
+  const { pagination, sort } = props
+
+  const respEdibleQuery = useQuery(["edible", "list", pagination, sort], () =>
     edibleService.getEdibles(props)
   );
 
