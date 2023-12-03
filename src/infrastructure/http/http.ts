@@ -24,11 +24,11 @@ const get = async <T>(url: string, queryParams?: QueryParams) => {
   }
 }
 
-const post = async <T>(url: string, body?: BodyInit) => {
+const post = async <T>(url: string, body: object) => {
   const response = await fetch(url, {
     method: 'POST',
     headers,
-    body
+    body: JSON.stringify(body)
   })
   return await response.json() as T
 }

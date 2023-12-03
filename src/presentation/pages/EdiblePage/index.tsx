@@ -2,12 +2,13 @@ import LayoutPage from "@/presentation/components/templates/LayoutPage";
 import useGetEdibleQuery from "@/presentation/queryHooks/useGetEdibleQuery";
 import { useState } from "react";
 import CardListEdibles from "./components/CardListEdibles";
+import CardAddEdible from "./components/CardAddEdible";
 
 const PER_PAGE = 20;
 
 const EdiblePage = () => {
   const [page, setPage] = useState<number>(1);
-  const { data: edibles, isLoading } = useGetEdibleQuery({
+  const { data: edibles, isLoading, refetch } = useGetEdibleQuery({
     pagination: {
       page,
       perPage: PER_PAGE,
@@ -20,7 +21,9 @@ const EdiblePage = () => {
 
   return (
     <LayoutPage>
-      <h1 className="text-3xl font-bold pb-6">Despensa</h1>      
+      <div className="flex flex-col gap-6">
+        <h1 className="text-3xl font-bold">Despensa</h1>
+        <CardAddEdible onSuccess={refetch} />
         <CardListEdibles
           data={edibles?.data}
           total={edibles?.total}
@@ -29,7 +32,7 @@ const EdiblePage = () => {
           isLoading={isLoading}
           onChangePage={setPage}
         />
-      )
+      </div>
     </LayoutPage>
   );
 };

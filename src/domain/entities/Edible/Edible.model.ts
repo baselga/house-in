@@ -11,3 +11,5 @@ export type Edible = {
   categorires?: Array<EdibleCategoryId>  
   trash: boolean
 }
+
+export type EdibleCreate = Omit<Edible, "id" | "trash">

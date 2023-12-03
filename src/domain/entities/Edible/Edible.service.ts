@@ -1,5 +1,6 @@
 import { queryType } from "@/domain/types/query";
 import { edibleRepository } from "@/infrastructure/entities/Edible/edible.repository";
+import { EdibleCreate } from "./Edible.model";
 
 export type edibleQueryTypePerPage = 5 | 10 | 20
 export type edibleQueryType = queryType & {
@@ -21,4 +22,7 @@ export const edibleService = {
       ...rest
     });
   },
+  createEdible: async (data: EdibleCreate) => {
+    return edibleRepository.createEdible(data)    
+  }  
 };

@@ -30,8 +30,7 @@ function SelectInput<T extends valueType>({ value, choices, onChange, ...rest }:
         <option
           key={id}
           className="bg-white"
-          value={id}
-          selected={value === id}
+          value={id}          
         >
           {name}
         </option>
