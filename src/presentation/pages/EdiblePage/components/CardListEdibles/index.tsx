@@ -64,7 +64,7 @@ const CardListEdibles = ({
                 </TableCell>
                 <TableCell className="text-right" width="80px">
                   {edible.optimalStock}
-                </TableCell>
+                </TableCell>              
               </TableRow>
             ))}
           </TableBody>

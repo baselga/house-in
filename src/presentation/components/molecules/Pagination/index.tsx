@@ -1,7 +1,6 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useCallback, useMemo } from "react";
+import ButtonIcon from "../../atoms/ButtonIcon";
 import SelectInput from "../../atoms/SelectInput";
-import { Button } from "../../ui/button";
 
 type PaginationProps = {
   page: number;
@@ -41,23 +40,19 @@ const Pagination = ({
   return (
     <>
       <div className="flex items-center gap-4">
-        <Button
+        <ButtonIcon
+          icon="ChevronLeft"
           variant="outline"
-          size="icon"
           onClick={previousPage}
           disabled={disablePrevious || isLoading}
-        >
-          <ChevronLeftIcon className="h-4 w-4" />
-        </Button>
+        />
         <SelectInput value={page} choices={choices} onChange={onPageChange} />
-        <Button
+        <ButtonIcon
+          icon="ChevronRight"
           variant="outline"
-          size="icon"
           onClick={nextPage}
           disabled={disableNext || isLoading}
-        >
-          <ChevronRightIcon className="h-4 w-4" />
-        </Button>
+        />
       </div>
     </>
   );

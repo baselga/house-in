@@ -1,19 +1,18 @@
-import * as z from "zod";
+import { EdibleCreate } from "@/domain/entities/Edible/Edible.model";
+import ButtonIcon from "@/presentation/components/atoms/ButtonIcon";
+import NumberFormInput from "@/presentation/components/atoms/form/NumberFormInput";
+import TextFormInput from "@/presentation/components/atoms/form/TextFormInput";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/presentation/components/ui/card";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/presentation/components/ui/form";
-import TextFormInput from "@/presentation/components/atoms/form/TextFormInput";
-import NumberFormInput from "@/presentation/components/atoms/form/NumberFormInput";
-import { Button } from "@/presentation/components/ui/button";
-import { PlusIcon } from "@radix-ui/react-icons";
-import { EdibleCreate } from "@/domain/entities/Edible/Edible.model";
 import useCreateEdibleMutation from "@/presentation/queryHooks/useCreateEdibleMutation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 const formSchema = z
   .object({
@@ -76,14 +75,12 @@ const CardAddEdible = ({ onSuccess }: CardAddEdibleProp) => {
             <NumberFormInput label="Stock" source="stock" />
             <NumberFormInput label="Mínimo" source="minStock" />
             <NumberFormInput label="Óptimo" source="optimalStock" />
-            <Button
+            <ButtonIcon
+              icon="Plus"
               variant="default"
-              size="icon"
               type="submit"
               className="flex-shrink-0 mt-8"
-            >
-              <PlusIcon className="h-4 w-4" />
-            </Button>
+            />
           </form>
         </Form>
       </CardContent>
