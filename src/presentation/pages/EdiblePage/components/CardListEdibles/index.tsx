@@ -1,5 +1,5 @@
-import { Edible } from "@/domain/entities/Edible/Edible.model";
-import { edibleUserCase } from "@/domain/entities/Edible/Edible.userCase";
+import { edibleUseCases } from "@/modules/edibles/application/useCases/EdibleUseCases";
+import { Edible } from "@/modules/edibles/domain/Edible";
 import StockLevel from "@/presentation/components/atoms/StockLevel";
 import Pagination from "@/presentation/components/molecules/Pagination";
 import {
@@ -50,7 +50,7 @@ const CardListEdibles = ({
               <TableRow key={edible.id}>
                 <TableCell>
                   <div className="flex gap-2 items-center">
-                    <StockLevel level={edibleUserCase.getStockLevel(edible)} />
+                    <StockLevel level={edibleUseCases.getStockLevel(edible)} />
                     <span className="font-semibold text-base">
                       {edible.name}
                     </span>

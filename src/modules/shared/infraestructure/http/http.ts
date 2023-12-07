@@ -1,4 +1,5 @@
-import formatQueryParams, { QueryParams } from "./formatQuery"
+import { QueryParams } from "../../domain/QueryParams"
+import formatQueryParams from "./formatQuery"
 
 const headers = {
   'Content-Type': 'application/json'

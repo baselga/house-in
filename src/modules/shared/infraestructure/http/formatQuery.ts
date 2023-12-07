@@ -1,13 +1,4 @@
-export type QueryParams = {
-  pagination?: {
-    page: number;
-    perPage: number;
-  };
-  sort?: {
-    field: string;
-    order: "ASC" | "DESC"
-  }
-};
+import { QueryParams } from "../../domain/QueryParams";
 
 function formatQueryParams(props?: QueryParams) {
   const queryParams = [];

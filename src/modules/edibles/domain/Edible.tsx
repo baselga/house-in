@@ -1,4 +1,3 @@
-import { EdibleCategoryId } from "../EdibleCategory/EdibleCategory.model"
 
 export type EdibleId = string
 
@@ -8,7 +7,6 @@ export type Edible = {
   stock: number,
   minStock: number,
   optimalStock: number,
-  categorires?: Array<EdibleCategoryId>  
   trash: boolean
 }
 
