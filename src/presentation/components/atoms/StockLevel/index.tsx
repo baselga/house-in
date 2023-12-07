@@ -1,7 +1,7 @@
-import { stockLevel } from "@/domain/types/commons";
+import { StockLevel as StockLevelType } from "@/modules/shared/domain/StockLevel";
 
 type StockLevelProps = {
-  level: stockLevel;
+  level: StockLevelType;
 };
 
 const StockLevel = ({ level }: StockLevelProps) => {

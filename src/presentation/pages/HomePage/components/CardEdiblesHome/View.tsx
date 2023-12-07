@@ -17,12 +17,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/presentation/components/ui/table";
-import useGetEdibleQuery from "@/presentation/queryHooks/useGetEdibleQuery";
+import useCardEdibleHomeContext from "./context";
 
-const EdibleList: React.FC = () => {
-  const { data: edibles } = useGetEdibleQuery({
-    pagination: { perPage: 5 },
-  });
+const CardEdiblesHomeView = () => {
+  const { data: edible } = useCardEdibleHomeContext();
 
   return (
     <Card>
@@ -39,7 +37,7 @@ const EdibleList: React.FC = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {edibles?.data?.map((edible) => (
+            {edible?.data?.map((edible) => (
               <TableRow key={edible.id}>
                 <TableCell>{edible.name}</TableCell>
                 <TableCell>{edible.stock}</TableCell>
@@ -57,4 +55,4 @@ const EdibleList: React.FC = () => {
   );
 };
 
-export default EdibleList;
+export default CardEdiblesHomeView;

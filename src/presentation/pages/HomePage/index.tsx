@@ -1,11 +1,11 @@
 import LayoutPage from "@/presentation/components/templates/LayoutPage"
-import EdibleList from "./components/EdibleList"
+import CardEdiblesHome from "./components/CardEdiblesHome"
 
 const HomePage = () => {
   return (
     <LayoutPage>
       <div className="grid grid-cols-2">
-        <EdibleList />
+        <CardEdiblesHome />
       </div>
     </LayoutPage>    
   )

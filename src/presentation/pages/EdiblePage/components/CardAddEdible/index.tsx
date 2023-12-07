@@ -1,4 +1,8 @@
-import { EdibleCreate } from "@/domain/entities/Edible/Edible.model";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+import { EdibleCreate } from "@/modules/edibles/domain/Edible";
 import ButtonIcon from "@/presentation/components/atoms/ButtonIcon";
 import NumberFormInput from "@/presentation/components/atoms/form/NumberFormInput";
 import TextFormInput from "@/presentation/components/atoms/form/TextFormInput";
@@ -10,9 +14,6 @@ import {
 } from "@/presentation/components/ui/card";
 import { Form } from "@/presentation/components/ui/form";
 import useCreateEdibleMutation from "@/presentation/queryHooks/useCreateEdibleMutation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
 
 const formSchema = z
   .object({
