@@ -1,5 +1,4 @@
 import { edibleUseCases } from "@/modules/edibles/application/useCases/EdibleUseCases";
-import { Edible } from "@/modules/edibles/domain/Edible";
 import StockLevel from "@/presentation/components/atoms/StockLevel";
 import Pagination from "@/presentation/components/molecules/Pagination";
 import {
@@ -15,24 +14,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/presentation/components/ui/table";
+import useEdiblePageContext from "../../context";
+import DeleteAction from "./components/DeleteAction";
+import DownStockAction from "./components/DownStockAction";
+import UpStockAction from "./components/UpStockAction";
 
-type CardListEdiblesProps = {
-  data?: Array<Edible>;
-  total?: number;
-  page: number;
-  perPage: number;
-  isLoading: boolean;
-  onChangePage: (page: number) => void;
-};
+const CardListEdibles = () => {
+  const { page, perPage, edibleList, onPageChange } =
+    useEdiblePageContext();
+  const { data: edibles, isLoading } = edibleList;
 
-const CardListEdibles = ({
-  data,
-  total,
-  page,
-  perPage,
-  isLoading,
-  onChangePage,
-}: CardListEdiblesProps) => {
   return (
     <Card>
       <CardContent>
@@ -43,10 +34,11 @@ const CardListEdibles = ({
               <TableHead className="text-right">Stock</TableHead>
               <TableHead className="text-right">Mínimo</TableHead>
               <TableHead className="text-right">Óptimo</TableHead>
+              <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((edible) => (
+            {edibles?.data?.map((edible) => (
               <TableRow key={edible.id}>
                 <TableCell>
                   <div className="flex gap-2 items-center">
@@ -64,20 +56,27 @@ const CardListEdibles = ({
                 </TableCell>
                 <TableCell className="text-right" width="80px">
                   {edible.optimalStock}
-                </TableCell>              
+                </TableCell>
+                <TableCell width="100px">
+                  <div className="flex justify-end gap-1">
+                    <UpStockAction edible={edible} />
+                    <DownStockAction edible={edible} />
+                    <DeleteAction edible={edible} />
+                  </div>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </CardContent>
       <CardFooter className="justify-end">
-        {total && (
+        {edibles?.total && (
           <Pagination
             page={page}
             perPage={perPage}
-            total={total}
+            total={edibles.total}
             isLoading={isLoading}
-            onPageChange={onChangePage}
+            onPageChange={onPageChange}
           />
         )}
       </CardFooter>

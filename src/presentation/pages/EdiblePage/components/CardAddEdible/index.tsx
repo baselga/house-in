@@ -14,6 +14,7 @@ import {
 } from "@/presentation/components/ui/card";
 import { Form } from "@/presentation/components/ui/form";
 import useCreateEdibleMutation from "@/presentation/queryHooks/useCreateEdibleMutation";
+import useEdiblePageContext from "../../context";
 
 const formSchema = z
   .object({
@@ -29,11 +30,8 @@ const formSchema = z
     path: ["optimalStock"],
   });
 
-type CardAddEdibleProp = {
-  onSuccess?: () => void;
-};
-
-const CardAddEdible = ({ onSuccess }: CardAddEdibleProp) => {
+const CardAddEdible = () => {
+  const { edibleList } = useEdiblePageContext();
   const { mutate: createEdible } = useCreateEdibleMutation();
   const form = useForm<EdibleCreate>({
     resolver: zodResolver(formSchema),
@@ -54,9 +52,7 @@ const CardAddEdible = ({ onSuccess }: CardAddEdibleProp) => {
           minStock: 0,
           optimalStock: 0,
         });
-        if (onSuccess) {
-          onSuccess();
-        }
+        edibleList.refetch()
       },
     });
   }

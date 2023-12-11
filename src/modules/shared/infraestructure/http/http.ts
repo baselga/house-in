@@ -34,11 +34,11 @@ const post = async <T>(url: string, body: object) => {
   return await response.json() as T
 }
 
-const put = async <T>(url: string, body?: BodyInit) => {
+const put = async <T>(url: string, body?: object) => {
   const response = await fetch(url, { 
     method: 'PUT',
     headers,
-    body
+    body: JSON.stringify(body)
   })
   return await response.json() as T
 }
