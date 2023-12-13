@@ -1,7 +1,7 @@
 import { EdibleService } from "@/modules/edibles/application/service/EdibleService";
 import { Edible, EdibleId } from "@/modules/edibles/domain/Edible";
 import { EdibleRepository } from "@/modules/edibles/domain/EdibleRepository";
-import { ApiEdibleRepository } from "@/modules/edibles/infraestructure/ApiEdibleRepository";
+import useRepositoryContext from "@/presentation/helpers/repositoryContext";
 import useGetEdibleQuery from "@/presentation/queryHooks/useGetEdibleQuery";
 import React, { createContext, useCallback, useContext, useState } from "react";
 import { UseQueryResult, useMutation } from "react-query";
@@ -24,7 +24,6 @@ type EdiblePageContextType = {
   onPageChange: (page: number) => void;
   onUpStock: (id: EdibleId) => void;
   onDownStock: (id: EdibleId) => void;
-  onDelete: (id: EdibleId) => void;
 };
 
 export const EdiblePageContext = createContext<EdiblePageContextType>({
@@ -35,20 +34,17 @@ export const EdiblePageContext = createContext<EdiblePageContextType>({
   onPageChange: () => {},
   onUpStock: () => {},
   onDownStock: () => {},
-  onDelete: () => {},
 });
 
 export const EdiblePageProvider = ({
   children,
-  repository = ApiEdibleRepository,
 }: {
   children: React.ReactNode;
-  repository?: EdibleRepository;
 }) => {
+  const repository = useRepositoryContext<EdibleRepository>();
   const service = EdibleService(repository);
   const upStockMutation = useMutation(service.upEdibleStock);
   const downStockMutation = useMutation(service.downEdibleStock);
-  const deleteMutation = useMutation(service.deleteEdible);
   const [page, setPage] = useState<number>(1);
 
   const edibleList = useGetEdibleQuery(
@@ -66,7 +62,7 @@ export const EdiblePageProvider = ({
   );
 
   const onUpStock = useCallback(
-    (id: EdibleId) => {      
+    (id: EdibleId) => {
       upStockMutation.mutate(id, {
         onSuccess: () => {
           edibleList.refetch();
@@ -87,25 +83,16 @@ export const EdiblePageProvider = ({
     [downStockMutation, edibleList]
   );
 
-  const onDelete = useCallback((id: EdibleId) => {
-    deleteMutation.mutate(id, {
-      onSuccess: () => {
-        edibleList.refetch();
-      },
-    });
-  }, [deleteMutation, edibleList]);
-
   return (
     <EdiblePageContext.Provider
       value={{
         page,
         perPage: PER_PAGE,
         edibleList,
-        isUpdating: upStockMutation.isLoading || downStockMutation.isLoading || deleteMutation.isLoading,
+        isUpdating: upStockMutation.isLoading || downStockMutation.isLoading,
         onPageChange: setPage,
         onUpStock,
         onDownStock,
-        onDelete
       }}
     >
       {children}

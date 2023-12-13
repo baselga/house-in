@@ -1,4 +1,4 @@
-import { TrashIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, ChevronDownIcon, PlusIcon } from "@radix-ui/react-icons";
+import { TrashIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, ChevronDownIcon, PlusIcon, Cross2Icon } from "@radix-ui/react-icons";
 
 export const iconsObject = {
   Trash: TrashIcon,
@@ -6,5 +6,6 @@ export const iconsObject = {
   ChevronRight: ChevronRightIcon,
   ChevronUp: ChevronUpIcon,
   ChevronDown: ChevronDownIcon,
-  Plus: PlusIcon
+  Plus: PlusIcon,
+  Cross: Cross2Icon,
 }
