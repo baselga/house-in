@@ -1,6 +1,7 @@
 import { uuid } from "@/modules/shared/infraestructure/uuid";
 import { Edible, EdibleCreate } from "../../domain/Edible";
 import { EdibleRepository } from "../../domain/EdibleRepository";
+import { EdibleValidatorSchema } from "../../domain/EdibleValidators";
 
 export const createEdible = (
   repository: EdibleRepository,
@@ -11,5 +12,7 @@ export const createEdible = (
     trash: false,
     ...data,
   };
-  return repository.createEdible(body);
+
+  const values = EdibleValidatorSchema.parse(body)    
+  return repository.createEdible(values);
 };

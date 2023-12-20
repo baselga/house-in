@@ -7,7 +7,7 @@ import {
   FormMessage,
 } from "@/presentation/components/ui/form";
 import { Input } from "@/presentation/components/ui/input";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 type NumberFormInputProps = {
   label?: string;
@@ -23,9 +23,6 @@ const NumberFormInput = ({
   helperText,
 }: NumberFormInputProps) => {
   const form = useFormContext();
-
-  const value = useWatch({ name: source });
-  console.log("dani source value", value);
 
   return (
     <FormField

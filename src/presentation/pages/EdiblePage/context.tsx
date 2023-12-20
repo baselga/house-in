@@ -21,20 +21,15 @@ type EdiblePageContextType = {
       >
     | Record<string, never>;
   isUpdating: boolean;
+  idEdit: EdibleId | false,
   onPageChange: (page: number) => void;
   onUpStock: (id: EdibleId) => void;
   onDownStock: (id: EdibleId) => void;
+  openEditModal: (id: EdibleId) => void;
+  closeEditModal: () => void;
 };
 
-export const EdiblePageContext = createContext<EdiblePageContextType>({
-  page: 1,
-  perPage: PER_PAGE,
-  isUpdating: false,
-  edibleList: {},
-  onPageChange: () => {},
-  onUpStock: () => {},
-  onDownStock: () => {},
-});
+export const EdiblePageContext = createContext<EdiblePageContextType | null>(null);
 
 export const EdiblePageProvider = ({
   children,
@@ -46,6 +41,7 @@ export const EdiblePageProvider = ({
   const upStockMutation = useMutation(service.upEdibleStock);
   const downStockMutation = useMutation(service.downEdibleStock);
   const [page, setPage] = useState<number>(1);
+  const [idEdit, setIdEdit] = useState<EdibleId | false>(false)
 
   const edibleList = useGetEdibleQuery(
     {
@@ -83,6 +79,15 @@ export const EdiblePageProvider = ({
     [downStockMutation, edibleList]
   );
 
+  const openEditModal = useCallback((id: EdibleId) => {
+    console.log("dani openEditModal", id)
+    setIdEdit(id)
+  }, [])
+
+  const closeEditModal = useCallback(() => {
+    setIdEdit(false)
+  }, [])
+
   return (
     <EdiblePageContext.Provider
       value={{
@@ -90,9 +95,12 @@ export const EdiblePageProvider = ({
         perPage: PER_PAGE,
         edibleList,
         isUpdating: upStockMutation.isLoading || downStockMutation.isLoading,
+        idEdit,
         onPageChange: setPage,
         onUpStock,
         onDownStock,
+        openEditModal,
+        closeEditModal
       }}
     >
       {children}
@@ -102,6 +110,11 @@ export const EdiblePageProvider = ({
 
 const useEdiblePageContext = () => {
   const context = useContext(EdiblePageContext);
+  
+  if (!context) {
+    throw new Error('useEdiblePageContext must be used inside the EdiblePageProvider');
+  }
+
   return context;
 };
 

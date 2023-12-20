@@ -5,7 +5,13 @@ import useEdiblePageContext from "@/presentation/pages/EdiblePage/context";
 import useDeleteAction from "./useDeleteAction";
 import { Button } from "@/presentation/components/ui/button";
 
-const DeleteAction = ({ edible }: { edible: Edible }) => {
+const DeleteAction = ({
+  edible,
+  className,
+}: {
+  edible: Edible;
+  className?: string;
+}) => {
   const { isUpdating } = useEdiblePageContext();
   const { isOpen, isDeleting, open, close, onDelete } = useDeleteAction(edible);
 
@@ -16,6 +22,7 @@ const DeleteAction = ({ edible }: { edible: Edible }) => {
         icon="Trash"
         isLoading={isUpdating}
         onClick={open}
+        className={className}
       />
       <Modal
         isOpen={isOpen}

@@ -18,6 +18,7 @@ import useEdiblePageContext from "../../context";
 import DeleteAction from "./components/DeleteAction";
 import DownStockAction from "./components/DownStockAction";
 import UpStockAction from "./components/UpStockAction";
+import EditAction from "./components/EditAction";
 
 const CardListEdibles = () => {
   const { page, perPage, edibleList, onPageChange } =
@@ -58,10 +59,11 @@ const CardListEdibles = () => {
                   {edible.optimalStock}
                 </TableCell>
                 <TableCell width="100px">
-                  <div className="flex justify-end gap-1">
-                    <UpStockAction edible={edible} />
-                    <DownStockAction edible={edible} />
-                    <DeleteAction edible={edible} />
+                  <div className="flex justify-end">
+                    <UpStockAction className="rounded-none rounded-l-sm" edible={edible} />
+                    <DownStockAction className="rounded-none" edible={edible} />
+                    <EditAction className="rounded-none" edible={edible} />
+                    <DeleteAction className="rounded-none rounded-r-sm" edible={edible} />
                   </div>
                 </TableCell>
               </TableRow>
