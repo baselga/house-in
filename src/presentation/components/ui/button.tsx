@@ -34,8 +34,6 @@ const buttonVariants = cva(
   }
 )
 
-console.log("dani buttonVariants",buttonVariants())
-
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {

@@ -15,8 +15,7 @@ const EditAction = ({
       icon="Edit"
       variant="default"
       className={className}
-      onClick={() =>  {
-        console.log("dani onClick", edible.id)
+      onClick={() =>  {        
         openEditModal(edible.id)
       }}
     />

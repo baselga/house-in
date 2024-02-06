@@ -2,7 +2,7 @@ import { QueryParams } from "@/modules/shared/domain/QueryParams";
 import { Edible, EdibleId } from "./Edible";
 
 export interface EdibleRepository {
-  getOne: (id: EdibleId) => Promise<Edible>
+  getOne: (id: EdibleId) => Promise<Edible>;
   getEdibles: (queryParams: QueryParams) => Promise<{
     data: Edible[];
     total: number;

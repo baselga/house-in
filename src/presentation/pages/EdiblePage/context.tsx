@@ -79,8 +79,7 @@ export const EdiblePageProvider = ({
     [downStockMutation, edibleList]
   );
 
-  const openEditModal = useCallback((id: EdibleId) => {
-    console.log("dani openEditModal", id)
+  const openEditModal = useCallback((id: EdibleId) => {    
     setIdEdit(id)
   }, [])
 
