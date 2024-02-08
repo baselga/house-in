@@ -7,6 +7,7 @@ const schema = {
   stock: z.coerce.number(),
   minStock: z.coerce.number().min(1),
   optimalStock: z.coerce.number().min(1),
+  categoryIds: z.optional(z.array(z.string())),
 };
 
 export const EdibleValidatorSchema = z

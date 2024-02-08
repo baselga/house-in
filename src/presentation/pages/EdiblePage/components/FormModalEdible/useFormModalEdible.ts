@@ -11,7 +11,7 @@ function useFormModalEdible() {
   const { mutate: updateEdible } = useUpdateEdibleMutation();
   const repository = useRepositoryContext<EdibleRepository>();
 
-  const { data: edible, isLoading } = useGetOneEdibleQuery(idEdit, repository);
+  const { data: edible, isLoading, isFetched } = useGetOneEdibleQuery(idEdit, repository);
 
   const onSubmit = useCallback(
     (values: Edible) => {
@@ -28,6 +28,7 @@ function useFormModalEdible() {
   return {
     isOpen: !!idEdit,
     isLoading,
+    isFetched,
     edible,
     close: closeEditModal,
     onSubmit,

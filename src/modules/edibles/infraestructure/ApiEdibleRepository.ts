@@ -9,6 +9,7 @@ type EdibleDTO = {
   stock: number,
   minStock: number,
   optimalStock: number,
+  categoryIds?: string[],
   trash: boolean
 }
 
@@ -19,6 +20,7 @@ function dtoToEdible(edibleDto: EdibleDTO): Edible {
     stock: edibleDto.stock,
     minStock: edibleDto.minStock,
     optimalStock: edibleDto.optimalStock,
+    categoryIds: edibleDto.categoryIds,
     trash: edibleDto.trash,
   }
 }
@@ -50,6 +52,7 @@ export const ApiEdibleRepository: EdibleRepository = {
       stock: data.stock,
       minStock: data.minStock,
       optimalStock: data.optimalStock,
+      categoryIds: data.categoryIds,
       trash: data.trash,
     };
 

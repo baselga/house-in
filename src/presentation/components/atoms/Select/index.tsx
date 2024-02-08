@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 type valueType = string | number
 
-type SelectInputProps<T extends valueType> = Omit<React.DetailedHTMLProps<
+type SelectProps<T extends valueType> = Omit<React.DetailedHTMLProps<
   React.SelectHTMLAttributes<HTMLSelectElement>,
   HTMLSelectElement
 >, "onChange"> & {
@@ -11,7 +11,7 @@ type SelectInputProps<T extends valueType> = Omit<React.DetailedHTMLProps<
   onChange: (value: T) => void;
 };
 
-function SelectInput<T extends valueType>({ value, choices, onChange, ...rest }: SelectInputProps<T>) {
+function Select<T extends valueType>({ value, choices, onChange, ...rest }: SelectProps<T>) {
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
       onChange(event.target.value as T);
@@ -38,4 +38,4 @@ function SelectInput<T extends valueType>({ value, choices, onChange, ...rest }:
     </select>
   );
 }
-export default SelectInput;
+export default Select;

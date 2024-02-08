@@ -27,6 +27,7 @@
     "react-movable": "^3.0.4",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.19.0",
+    "react-select": "^5.8.0",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "uuidv4": "^6.2.13",

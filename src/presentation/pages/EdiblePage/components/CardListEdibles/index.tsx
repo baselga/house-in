@@ -19,11 +19,12 @@ import DeleteAction from "./components/DeleteAction";
 import DownStockAction from "./components/DownStockAction";
 import UpStockAction from "./components/UpStockAction";
 import EditAction from "./components/EditAction";
+import useGetAllEdibleCategories from "@/presentation/queryHooks/useGetAllEdibleCategories";
 
 const CardListEdibles = () => {
-  const { page, perPage, edibleList, onPageChange } =
-    useEdiblePageContext();
+  const { page, perPage, edibleList, onPageChange } = useEdiblePageContext();
   const { data: edibles, isLoading } = edibleList;
+  const { data: categoies } = useGetAllEdibleCategories();
 
   return (
     <Card>
@@ -32,6 +33,7 @@ const CardListEdibles = () => {
           <TableHeader>
             <TableRow>
               <TableHead>Nombre</TableHead>
+              <TableHead>Categorias</TableHead>
               <TableHead className="text-right">Stock</TableHead>
               <TableHead className="text-right">Mínimo</TableHead>
               <TableHead className="text-right">Óptimo</TableHead>
@@ -49,6 +51,15 @@ const CardListEdibles = () => {
                     </span>
                   </div>
                 </TableCell>
+                <TableCell>
+                  {edible.categoryIds
+                    ?.map(
+                      (categoryId) =>
+                        categoies?.data.find((each) => each.id === categoryId)
+                          ?.name
+                    )
+                    .join(", ")}
+                </TableCell>
                 <TableCell className="text-right" width="80px">
                   {edible.stock}
                 </TableCell>
@@ -60,10 +71,16 @@ const CardListEdibles = () => {
                 </TableCell>
                 <TableCell width="100px">
                   <div className="flex justify-end">
-                    <UpStockAction className="rounded-none rounded-l-sm" edible={edible} />
+                    <UpStockAction
+                      className="rounded-none rounded-l-sm"
+                      edible={edible}
+                    />
                     <DownStockAction className="rounded-none" edible={edible} />
                     <EditAction className="rounded-none" edible={edible} />
-                    <DeleteAction className="rounded-none rounded-r-sm" edible={edible} />
+                    <DeleteAction
+                      className="rounded-none rounded-r-sm"
+                      edible={edible}
+                    />
                   </div>
                 </TableCell>
               </TableRow>

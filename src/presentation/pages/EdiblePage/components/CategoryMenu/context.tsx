@@ -1,9 +1,10 @@
-import React, { createContext, useCallback, useContext } from "react";
-import { UseQueryResult, useMutation, useQuery } from "react-query";
-import { EdibleCategory, EdibleCategoryCreate } from "@/modules/edibleCategories/domain/EdibleCategory";
-import useRepositoryContext from "@/presentation/helpers/repositoryContext";
-import { EdibleCategoryRepository } from "@/modules/edibleCategories/domain/EdibleCategoryRepository";
 import { EdibleCategoryService } from "@/modules/edibleCategories/application/service/EdibleCategoryService";
+import { EdibleCategory, EdibleCategoryCreate } from "@/modules/edibleCategories/domain/EdibleCategory";
+import { EdibleCategoryRepository } from "@/modules/edibleCategories/domain/EdibleCategoryRepository";
+import useRepositoryContext from "@/presentation/helpers/repositoryContext";
+import useGetAllEdibleCategories from "@/presentation/queryHooks/useGetAllEdibleCategories";
+import React, { createContext, useCallback, useContext } from "react";
+import { UseQueryResult, useMutation } from "react-query";
 
 type CategoryMenuContextType = {
   menuItems:
@@ -28,17 +29,9 @@ export const CategoryMenuContextProvider = ({
   children: React.ReactNode;
 }) => {
   const repository = useRepositoryContext<EdibleCategoryRepository>();
+  const menuItems = useGetAllEdibleCategories(repository)
   const service = EdibleCategoryService(repository);
   const mutation = useMutation(service.updateAll);
-
-  const menuItems = useQuery(["edible-menu"], () =>
-    service.getList({
-      sort: {
-        field: "order",
-        order: "ASC",
-      },
-    })
-  );
 
   const updateMenu = useCallback(
     (values: (EdibleCategory | EdibleCategoryCreate)[]) => {

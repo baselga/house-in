@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import ButtonIcon from "../../atoms/ButtonIcon";
-import SelectInput from "../../atoms/SelectInput";
+import Select from "../../atoms/Select";
 
 type PaginationProps = {
   page: number;
@@ -46,7 +46,7 @@ const Pagination = ({
           onClick={previousPage}
           disabled={disablePrevious || isLoading}
         />
-        <SelectInput value={page} choices={choices} onChange={onPageChange} />
+        <Select value={page} choices={choices} onChange={onPageChange} />
         <ButtonIcon
           icon="ChevronRight"
           variant="outline"
