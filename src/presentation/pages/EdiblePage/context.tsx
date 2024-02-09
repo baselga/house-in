@@ -4,10 +4,16 @@ import { Edible, EdibleId } from "@/modules/edibles/domain/Edible";
 import { EdibleRepository } from "@/modules/edibles/domain/EdibleRepository";
 import useRepositoryContext from "@/presentation/helpers/repositoryContext";
 import useGetEdibleQuery from "@/presentation/queryHooks/useGetEdibleQuery";
-import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import { UseQueryResult, useMutation } from "react-query";
 
-const PER_PAGE = 20;
+const PER_PAGE = 15;
 
 type EdiblePageFilterType = {
   categoryId: EdibleCategoryId | false;
@@ -60,22 +66,20 @@ export const EdiblePageProvider = ({
     if (filter.categoryId) {
       finalFilters.categoryId = filter.categoryId;
     }
-    return finalFilters
+    return finalFilters;
   }, [filter.categoryId]);
 
-  const edibleList = useGetEdibleQuery(
-    {
-      pagination: {
-        page,
-        perPage: PER_PAGE,
-      },
-      sort: {
-        field: "name",
-        order: "ASC",
-      },
-      filter: queryFilter,
-    }    
-  );
+  const edibleList = useGetEdibleQuery({
+    pagination: {
+      page,
+      perPage: PER_PAGE,
+    },
+    sort: {
+      field: "name",
+      order: "ASC",
+    },
+    filter: queryFilter,
+  });
 
   const onUpStock = useCallback(
     (id: EdibleId) => {
