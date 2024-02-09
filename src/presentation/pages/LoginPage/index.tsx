@@ -27,7 +27,6 @@ const LoginPage = () => {
 
   const onSubmit = useCallback(
     (data: LoginFormType) => {
-      console.log("dani onSubmit", data)
       authContext.login(data);
     },
     [authContext],
