@@ -1,4 +1,3 @@
-
 export type QueryParams = {
   pagination?: {
     page?: number;
@@ -6,6 +5,7 @@ export type QueryParams = {
   };
   sort?: {
     field: string;
-    order: "ASC" | "DESC"
-  }
+    order: "ASC" | "DESC";
+  };
+  filter?: Record<string, string | number>;
 };

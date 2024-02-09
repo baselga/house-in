@@ -46,7 +46,7 @@ const EditMenu = () => {
           menuItems.refetch();
         })
         .catch((e: unknown) => {
-          console.log("dani error", e);
+          console.error("ERROR", e);
         });
     },
     [close, menuItems, updateMenu]

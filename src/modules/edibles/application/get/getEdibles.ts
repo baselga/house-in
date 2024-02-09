@@ -1,5 +1,6 @@
 import { QueryParams } from "@/modules/shared/domain/QueryParams";
 import { EdibleRepository } from "../../domain/EdibleRepository";
+import { EdibleCategoryId } from "@/modules/edibleCategories/domain/EdibleCategory";
 
 export type EdibleQueryParamsPerPage = 5 | 10 | 20
 export type EdibleQueryParams = QueryParams & {
@@ -8,6 +9,9 @@ export type EdibleQueryParams = QueryParams & {
   };
   sort?: {
     field?: "name" | "stock" | "minStock" | "optimalStock"
+  },
+  filter?: {
+    categoryId?: EdibleCategoryId
   }
 };
 

@@ -1,12 +1,17 @@
+import { EdibleCategoryId } from "@/modules/edibleCategories/domain/EdibleCategory";
 import { EdibleService } from "@/modules/edibles/application/service/EdibleService";
 import { Edible, EdibleId } from "@/modules/edibles/domain/Edible";
 import { EdibleRepository } from "@/modules/edibles/domain/EdibleRepository";
 import useRepositoryContext from "@/presentation/helpers/repositoryContext";
 import useGetEdibleQuery from "@/presentation/queryHooks/useGetEdibleQuery";
-import React, { createContext, useCallback, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { UseQueryResult, useMutation } from "react-query";
 
 const PER_PAGE = 20;
+
+type EdiblePageFilterType = {
+  categoryId: EdibleCategoryId | false;
+};
 
 type EdiblePageContextType = {
   page: number;
@@ -21,15 +26,19 @@ type EdiblePageContextType = {
       >
     | Record<string, never>;
   isUpdating: boolean;
-  idEdit: EdibleId | false,
+  idEdit: EdibleId | false;
+  filter: EdiblePageFilterType;
   onPageChange: (page: number) => void;
   onUpStock: (id: EdibleId) => void;
   onDownStock: (id: EdibleId) => void;
   openEditModal: (id: EdibleId) => void;
   closeEditModal: () => void;
+  changeFilter: (newFilter: Partial<EdiblePageFilterType>) => void;
 };
 
-export const EdiblePageContext = createContext<EdiblePageContextType | null>(null);
+export const EdiblePageContext = createContext<EdiblePageContextType | null>(
+  null
+);
 
 export const EdiblePageProvider = ({
   children,
@@ -41,7 +50,18 @@ export const EdiblePageProvider = ({
   const upStockMutation = useMutation(service.upEdibleStock);
   const downStockMutation = useMutation(service.downEdibleStock);
   const [page, setPage] = useState<number>(1);
-  const [idEdit, setIdEdit] = useState<EdibleId | false>(false)
+  const [idEdit, setIdEdit] = useState<EdibleId | false>(false);
+  const [filter, setFilter] = useState<EdiblePageFilterType>({
+    categoryId: false,
+  });
+
+  const queryFilter = useMemo(() => {
+    const finalFilters: Record<string, string | number> = {};
+    if (filter.categoryId) {
+      finalFilters.categoryId = filter.categoryId;
+    }
+    return finalFilters
+  }, [filter.categoryId]);
 
   const edibleList = useGetEdibleQuery(
     {
@@ -53,6 +73,7 @@ export const EdiblePageProvider = ({
         field: "name",
         order: "ASC",
       },
+      filter: queryFilter,
     },
     repository
   );
@@ -79,13 +100,23 @@ export const EdiblePageProvider = ({
     [downStockMutation, edibleList]
   );
 
-  const openEditModal = useCallback((id: EdibleId) => {    
-    setIdEdit(id)
-  }, [])
+  const openEditModal = useCallback((id: EdibleId) => {
+    setIdEdit(id);
+  }, []);
 
   const closeEditModal = useCallback(() => {
-    setIdEdit(false)
-  }, [])
+    setIdEdit(false);
+  }, []);
+
+  const changeFilter = useCallback(
+    (newFilter: Partial<EdiblePageFilterType>) => {
+      setFilter({
+        ...filter,
+        ...newFilter,
+      });
+    },
+    [filter]
+  );
 
   return (
     <EdiblePageContext.Provider
@@ -95,11 +126,13 @@ export const EdiblePageProvider = ({
         edibleList,
         isUpdating: upStockMutation.isLoading || downStockMutation.isLoading,
         idEdit,
+        filter,
         onPageChange: setPage,
         onUpStock,
         onDownStock,
         openEditModal,
-        closeEditModal
+        closeEditModal,
+        changeFilter,
       }}
     >
       {children}
@@ -109,9 +142,11 @@ export const EdiblePageProvider = ({
 
 const useEdiblePageContext = () => {
   const context = useContext(EdiblePageContext);
-  
+
   if (!context) {
-    throw new Error('useEdiblePageContext must be used inside the EdiblePageProvider');
+    throw new Error(
+      "useEdiblePageContext must be used inside the EdiblePageProvider"
+    );
   }
 
   return context;

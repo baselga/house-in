@@ -9,11 +9,19 @@ function formatQueryParams(props?: QueryParams) {
     queryParams.push(`_limit=${pagination.perPage}`);
   }
 
-  if((props?.sort)) {
-    const sort = props.sort
+  if (props?.sort) {
+    const sort = props.sort;
 
     queryParams.push(`_sort=${sort.field}`);
-    queryParams.push(`_order=${sort.order.toLocaleLowerCase()}`)
+    queryParams.push(`_order=${sort.order.toLocaleLowerCase()}`);
+  }
+
+  if (props?.filter) {
+    for (const key in props.filter) {
+      if (Object.prototype.hasOwnProperty.call(props.filter, key)) {
+        queryParams.push(`${key}=${props.filter[key]}`);
+      }
+    }
   }
 
   return queryParams.join("&");

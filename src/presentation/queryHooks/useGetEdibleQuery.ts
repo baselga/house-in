@@ -9,9 +9,9 @@ const useGetEdibleQuery = (
   repository: EdibleRepository = ApiEdibleRepository
 ) => {
   const service = EdibleService(repository);
-  const { pagination, sort } = props;
+  const { pagination, sort, filter } = props;
 
-  const respEdibleQuery = useQuery(["edible", "list", pagination, sort], () =>
+  const respEdibleQuery = useQuery(["edible", "list", pagination, sort, filter], () =>
     service.getEdibles(props)
   );
 

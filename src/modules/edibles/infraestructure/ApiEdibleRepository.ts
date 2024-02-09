@@ -21,7 +21,7 @@ function dtoToEdible(edibleDto: EdibleDTO): Edible {
     minStock: edibleDto.minStock,
     optimalStock: edibleDto.optimalStock,
     categoryIds: edibleDto.categoryIds,
-    trash: edibleDto.trash,
+    trash: edibleDto.trash,    
   }
 }
 
@@ -32,6 +32,12 @@ export const ApiEdibleRepository: EdibleRepository = {
   },
 
   getEdibles: async (queryParams: QueryParams) => {
+    const { filter } = queryParams
+    const finalFilters: Record<string, (string | number)> = {}
+    if(filter?.categoryId) {
+      finalFilters.categoryIds_like = filter.categoryId
+    }
+    queryParams.filter = finalFilters
     const { data, total } = await http.get<EdibleDTO[]>(
       "http://localhost:3001/edibles",
       queryParams
