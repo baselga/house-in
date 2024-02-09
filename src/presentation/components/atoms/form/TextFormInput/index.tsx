@@ -14,6 +14,7 @@ type TextFormInputProps = {
   source: string;
   placeholder?: string;
   helperText?: string;
+  type?: "text" | "password"
 };
 
 const TextFormInput = ({
@@ -21,6 +22,7 @@ const TextFormInput = ({
   source,
   placeholder,
   helperText,
+  type = "text"
 }: TextFormInputProps) => {
   const form = useFormContext();
 
@@ -32,7 +34,7 @@ const TextFormInput = ({
         <FormItem className="w-full">
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
-            <Input type="text" placeholder={placeholder} {...field} />
+            <Input type={type} placeholder={placeholder} {...field} />
           </FormControl>
           {helperText && <FormDescription>{helperText}</FormDescription>}
           <FormMessage />
