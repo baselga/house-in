@@ -16,7 +16,7 @@ const EdiblePage = () => {
     }}>
       <EdiblePageProvider>
         <LayoutPage>
-          <h1 className="text-3xl font-bold pb-6">Despensa</h1>
+          <h1 className="text-3xl font-bold pb-6 text-stone-800">Despensa</h1>
           <section className="pb-6">
             <CardAddEdible />
           </section>

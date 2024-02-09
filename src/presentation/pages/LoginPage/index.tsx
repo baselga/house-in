@@ -38,7 +38,7 @@ const LoginPage = () => {
     <div className="grid h-screen place-items-center bg-slate-200">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Card className="w-96 bg-slate-100 shadow-lg">
+          <Card className="w-96 shadow-lg">
             <CardHeader>
               <h1 className="text-2xl font-bold text-center text-slate-900">House In</h1>
             </CardHeader>
