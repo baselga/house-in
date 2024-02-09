@@ -45,8 +45,8 @@ export const EdiblePageProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const repository = useRepositoryContext<EdibleRepository>();
-  const service = EdibleService(repository);
+  const edibleRepository = useRepositoryContext<EdibleRepository>("edible");
+  const service = EdibleService(edibleRepository);
   const upStockMutation = useMutation(service.upEdibleStock);
   const downStockMutation = useMutation(service.downEdibleStock);
   const [page, setPage] = useState<number>(1);
@@ -74,8 +74,7 @@ export const EdiblePageProvider = ({
         order: "ASC",
       },
       filter: queryFilter,
-    },
-    repository
+    }    
   );
 
   const onUpStock = useCallback(

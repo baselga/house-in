@@ -28,8 +28,8 @@ export const CategoryMenuContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const repository = useRepositoryContext<EdibleCategoryRepository>();
-  const menuItems = useGetAllEdibleCategories(repository)
+  const repository = useRepositoryContext<EdibleCategoryRepository>("edibleCategory");
+  const menuItems = useGetAllEdibleCategories()
   const service = EdibleCategoryService(repository);
   const mutation = useMutation(service.updateAll);
 

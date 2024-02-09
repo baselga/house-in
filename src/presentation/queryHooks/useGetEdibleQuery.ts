@@ -1,13 +1,13 @@
 import { EdibleQueryParams } from "@/modules/edibles/application/get/getEdibles";
 import { EdibleService } from "@/modules/edibles/application/service/EdibleService";
 import { EdibleRepository } from "@/modules/edibles/domain/EdibleRepository";
-import { ApiEdibleRepository } from "@/modules/edibles/infraestructure/ApiEdibleRepository";
 import { useQuery } from "react-query";
+import useRepositoryContext from "../helpers/repositoryContext";
 
 const useGetEdibleQuery = (
-  props: EdibleQueryParams = {},
-  repository: EdibleRepository = ApiEdibleRepository
+  props: EdibleQueryParams = {},  
 ) => {
+  const repository = useRepositoryContext<EdibleRepository>("edible")
   const service = EdibleService(repository);
   const { pagination, sort, filter } = props;
 

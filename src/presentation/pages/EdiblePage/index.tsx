@@ -1,16 +1,19 @@
+import { ApiEdibleCategoryRepository } from "@/modules/edibleCategories/infraestructure/ApiEdibleCategoryRepository";
 import { ApiEdibleRepository } from "@/modules/edibles/infraestructure/ApiEdibleRepository";
 import LayoutPage from "@/presentation/components/templates/LayoutPage";
+import { RepositoryProvider } from "@/presentation/helpers/repositoryContext";
 import CardAddEdible from "./components/CardAddEdible";
 import CardListEdibles from "./components/CardListEdibles";
-import { EdiblePageProvider } from "./context";
-import { RepositoryProvider } from "@/presentation/helpers/repositoryContext";
-import FormModalEdible from "./components/FormModalEdible";
-import { EdibleRepository } from "@/modules/edibles/domain/EdibleRepository";
 import CategoryMenu from "./components/CategoryMenu";
+import FormModalEdible from "./components/FormModalEdible";
+import { EdiblePageProvider } from "./context";
 
 const EdiblePage = () => {
   return (
-    <RepositoryProvider<EdibleRepository> repository={ApiEdibleRepository}>
+    <RepositoryProvider repository={{
+      edible: ApiEdibleRepository,
+      edibleCategory: ApiEdibleCategoryRepository
+    }}>
       <EdiblePageProvider>
         <LayoutPage>
           <h1 className="text-3xl font-bold pb-6">Despensa</h1>

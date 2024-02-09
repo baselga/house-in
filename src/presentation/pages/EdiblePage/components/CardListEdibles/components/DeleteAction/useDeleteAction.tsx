@@ -7,7 +7,7 @@ import { useCallback, useState } from "react";
 import { useMutation } from "react-query";
 
 const useDeleteAction = (edible: Edible) => {
-  const repository = useRepositoryContext<EdibleRepository>();
+  const repository = useRepositoryContext<EdibleRepository>("edible");
   const { edibleList } = useEdiblePageContext();
   const service = EdibleService(repository);
   const deleteMutation = useMutation(service.deleteEdible);

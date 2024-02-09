@@ -1,17 +1,13 @@
-import useRepositoryContext from "@/presentation/helpers/repositoryContext";
-import useEdiblePageContext from "../../context";
-import { EdibleRepository } from "@/modules/edibles/domain/EdibleRepository";
-import useGetOneEdibleQuery from "@/presentation/queryHooks/useGetOneEdibleQuery";
-import { useCallback } from "react";
 import { Edible } from "@/modules/edibles/domain/Edible";
+import useGetOneEdibleQuery from "@/presentation/queryHooks/useGetOneEdibleQuery";
 import useUpdateEdibleMutation from "@/presentation/queryHooks/useUpdateEdibleMutation";
+import { useCallback } from "react";
+import useEdiblePageContext from "../../context";
 
 function useFormModalEdible() {
   const { idEdit, closeEditModal, edibleList } = useEdiblePageContext();
   const { mutate: updateEdible } = useUpdateEdibleMutation();
-  const repository = useRepositoryContext<EdibleRepository>();
-
-  const { data: edible, isLoading, isFetched } = useGetOneEdibleQuery(idEdit, repository);
+  const { data: edible, isLoading, isFetched } = useGetOneEdibleQuery(idEdit);
 
   const onSubmit = useCallback(
     (values: Edible) => {

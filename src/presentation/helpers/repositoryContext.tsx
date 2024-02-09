@@ -1,13 +1,20 @@
+import { EdibleCategoryRepository } from "@/modules/edibleCategories/domain/EdibleCategoryRepository";
+import { EdibleRepository } from "@/modules/edibles/domain/EdibleRepository";
 import { createContext, useContext } from "react";
 
-export const RepositoryContext = createContext<unknown>(null);
+type RepositoryType = {
+  edible?: EdibleRepository;
+  edibleCategory?: EdibleCategoryRepository;
+};
 
-export function RepositoryProvider<T>({
+export const RepositoryContext = createContext<RepositoryType | null>(null);
+
+export function RepositoryProvider({
   children,
   repository,
 }: {
   children: React.ReactNode;
-  repository: T;
+  repository: RepositoryType;
 }) {
   return (
     <RepositoryContext.Provider value={repository}>
@@ -16,14 +23,22 @@ export function RepositoryProvider<T>({
   );
 }
 
-function useRepositoryContext<T>(): T {
+function useRepositoryContext<T>(type: keyof RepositoryType): T {
   const context = useContext(RepositoryContext);
 
   if (!context) {
-    throw new Error('useRepositoryContext must be used inside the RepositoryProvider');
+    throw new Error(
+      "useRepositoryContext must be used inside the RepositoryProvider"
+    );
   }
 
-  return context as T;
+  if (!context[type]) {
+    throw new Error(
+      `RepositoryContext does not contains a tepository of type ${type}.`
+    );
+  }
+
+  return context[type] as T;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

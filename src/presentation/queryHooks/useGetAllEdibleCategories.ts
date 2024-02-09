@@ -1,11 +1,10 @@
 import { EdibleCategoryService } from "@/modules/edibleCategories/application/service/EdibleCategoryService";
 import { EdibleCategoryRepository } from "@/modules/edibleCategories/domain/EdibleCategoryRepository";
-import { ApiEdibleCategoryRepository } from "@/modules/edibleCategories/infraestructure/ApiEdibleCategoryRepository";
 import { useQuery } from "react-query";
+import useRepositoryContext from "../helpers/repositoryContext";
 
-const useGetAllEdibleCategories = (
-  repository: EdibleCategoryRepository = ApiEdibleCategoryRepository
-) => {
+const useGetAllEdibleCategories = () => {
+  const repository = useRepositoryContext<EdibleCategoryRepository>("edibleCategory")
   const service = EdibleCategoryService(repository);
 
   const respEdibleCategoriesQuery = useQuery(["edible-menu"], () =>
