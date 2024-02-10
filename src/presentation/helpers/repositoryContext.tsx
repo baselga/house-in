@@ -28,18 +28,17 @@ function useRepositoryContext<T>(type: keyof RepositoryType): T {
 
   if (!context) {
     throw new Error(
-      "useRepositoryContext must be used inside the RepositoryProvider"
+      "useRepositoryContext must be used inside the RepositoryProvider",
     );
   }
 
   if (!context[type]) {
     throw new Error(
-      `RepositoryContext does not contains a tepository of type ${type}.`
+      `RepositoryContext does not contains a tepository of type ${type}.`,
     );
   }
 
   return context[type] as T;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default useRepositoryContext;

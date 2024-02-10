@@ -1,10 +1,9 @@
-
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   User,
-} from 'firebase/auth';
+} from "firebase/auth";
 import {
   useContext,
   createContext,
@@ -13,10 +12,10 @@ import {
   useCallback,
   useEffect,
   ReactNode,
-} from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../config/firebase';
-import { SECTIONS } from '../config/sections';
+} from "react";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../config/firebase";
+import { SECTIONS } from "../config/sections";
 
 export type LoginProps = {
   email: string;
@@ -40,9 +39,9 @@ interface AuthContextInterface {
 
 export const AuthContext = createContext<AuthContextInterface | null>(null);
 
-export function AuthProvider({ children }: AuthContextProps) {  
+export function AuthProvider({ children }: AuthContextProps) {
   const navigate = useNavigate();
-  const [user, setUser] = useState<AuthContextState['user']>();
+  const [user, setUser] = useState<AuthContextState["user"]>();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -51,11 +50,11 @@ export function AuthProvider({ children }: AuthContextProps) {
   }, []);
 
   const login = useCallback(
-    ({ email, password }: LoginProps) => {      
+    ({ email, password }: LoginProps) => {
       signInWithEmailAndPassword(auth, email, password)
         .then(() => navigate(SECTIONS.home.path))
         .catch((error) => {
-          console.error('Error', {
+          console.error("Error", {
             code: error.code,
             message: error.message,
           });
@@ -88,13 +87,10 @@ const useAuthContext = () => {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error(
-      "useAuthContext must be used inside the AuthProvider"
-    );
+    throw new Error("useAuthContext must be used inside the AuthProvider");
   }
 
   return context;
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default useAuthContext;
