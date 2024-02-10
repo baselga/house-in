@@ -9,4 +9,4 @@ export type EdibleCategory = {
 
 export type EdibleCategoryCreate = EdibleCategory & {
   id?: EdibleCategoryId;
-}
+};

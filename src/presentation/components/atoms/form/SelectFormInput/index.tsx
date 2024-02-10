@@ -8,7 +8,10 @@ import {
 } from "@/presentation/components/ui/form";
 import { useFormContext } from "react-hook-form";
 import Select, { SingleValue } from "react-select";
-import { SelectFormInputOption, SelectFormInputProps } from "./SelectFormInput.type";
+import {
+  SelectFormInputOption,
+  SelectFormInputProps,
+} from "./SelectFormInput.type";
 import { getValue, handleSigleChange, handleMultiChange } from "./utils";
 
 const SelectFormInput = ({
@@ -43,7 +46,10 @@ const SelectFormInput = ({
                 if (Array.isArray(value)) {
                   handleMultiChange(value, field.onChange);
                 } else {
-                  handleSigleChange(value as SingleValue<SelectFormInputOption>, field.onChange);
+                  handleSigleChange(
+                    value as SingleValue<SelectFormInputOption>,
+                    field.onChange,
+                  );
                 }
               }}
             />

@@ -13,14 +13,10 @@ const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>(
     const Icon = iconsObject[icon];
     return (
       <Button size="icon" disabled={disabled || isLoading} {...rest} ref={ref}>
-        {isLoading ? (
-          <Loading size="small" />
-        ) : (
-          <Icon className="h-4 w-4" />
-        )}
+        {isLoading ? <Loading size="small" /> : <Icon className="h-4 w-4" />}
       </Button>
     );
-  }
+  },
 );
 
 export default ButtonIcon;

@@ -26,7 +26,7 @@ const FormModalEdible = () => {
     }));
   }, [categoies?.data]);
 
-  if (!isOpen || (isOpen && !isFetched) ) {
+  if (!isOpen || (isOpen && !isFetched)) {
     return null;
   }
 
@@ -38,8 +38,8 @@ const FormModalEdible = () => {
       actions={<Button type="submit">Guardar</Button>}
       onSubmit={onSubmit}
       formProps={{
-        resolver: zodResolver(EdibleValidatorSchema),        
-        values: edible
+        resolver: zodResolver(EdibleValidatorSchema),
+        values: edible,
       }}
     >
       <div className="flex flex-col gap-4">

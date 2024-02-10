@@ -21,7 +21,7 @@ import UpStockAction from "./components/UpStockAction";
 import EditAction from "./components/EditAction";
 import useGetAllEdibleCategories from "@/presentation/queryHooks/useGetAllEdibleCategories";
 
-const CardListEdibles = () => {  
+const CardListEdibles = () => {
   const { page, perPage, edibleList, onPageChange } = useEdiblePageContext();
   const { data: edibles, isLoading } = edibleList;
   const { data: categoies } = useGetAllEdibleCategories();
@@ -56,7 +56,7 @@ const CardListEdibles = () => {
                     ?.map(
                       (categoryId) =>
                         categoies?.data.find((each) => each.id === categoryId)
-                          ?.name
+                          ?.name,
                     )
                     .join(", ")}
                 </TableCell>

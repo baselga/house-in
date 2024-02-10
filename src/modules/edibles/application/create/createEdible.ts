@@ -5,7 +5,7 @@ import { EdibleValidatorSchema } from "../../domain/EdibleValidators";
 
 export const createEdible = (
   repository: EdibleRepository,
-  data: EdibleCreate
+  data: EdibleCreate,
 ) => {
   const body: Edible = {
     id: uuid.get(),
@@ -13,6 +13,6 @@ export const createEdible = (
     ...data,
   };
 
-  const values = EdibleValidatorSchema.parse(body)    
+  const values = EdibleValidatorSchema.parse(body);
   return repository.createEdible(values);
 };

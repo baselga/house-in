@@ -1,22 +1,30 @@
 import { useCallback } from "react";
 
-type valueType = string | number
+type valueType = string | number;
 
-type SelectProps<T extends valueType> = Omit<React.DetailedHTMLProps<
-  React.SelectHTMLAttributes<HTMLSelectElement>,
-  HTMLSelectElement
->, "onChange"> & {
+type SelectProps<T extends valueType> = Omit<
+  React.DetailedHTMLProps<
+    React.SelectHTMLAttributes<HTMLSelectElement>,
+    HTMLSelectElement
+  >,
+  "onChange"
+> & {
   value: T | undefined;
   choices: Array<{ id: T; name: string | number }>;
   onChange: (value: T) => void;
 };
 
-function Select<T extends valueType>({ value, choices, onChange, ...rest }: SelectProps<T>) {
+function Select<T extends valueType>({
+  value,
+  choices,
+  onChange,
+  ...rest
+}: SelectProps<T>) {
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
       onChange(event.target.value as T);
     },
-    [onChange]
+    [onChange],
   );
 
   return (
@@ -27,11 +35,7 @@ function Select<T extends valueType>({ value, choices, onChange, ...rest }: Sele
       {...rest}
     >
       {choices.map(({ id, name }) => (
-        <option
-          key={id}
-          className="bg-white"
-          value={id}          
-        >
+        <option key={id} className="bg-white" value={id}>
           {name}
         </option>
       ))}

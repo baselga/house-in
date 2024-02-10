@@ -33,7 +33,7 @@ const LoginPage = () => {
     (data: LoginFormType) => {
       authContext.login(data);
     },
-    [authContext]
+    [authContext],
   );
 
   return (

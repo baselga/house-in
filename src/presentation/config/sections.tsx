@@ -7,7 +7,7 @@ export interface SectionConfig {
   label: string;
   path: string;
   view: JSX.Element;
-  private: boolean
+  private: boolean;
 }
 
 export const SECTIONS: Record<SectionKey, SectionConfig> = {
@@ -15,18 +15,18 @@ export const SECTIONS: Record<SectionKey, SectionConfig> = {
     label: "login",
     view: <LoginPage />,
     path: "login",
-    private: false
+    private: false,
   },
   home: {
     label: "",
     view: <HomePage />,
     path: "/",
-    private: true
+    private: true,
   },
   edible: {
     label: "Despensa",
     path: "/despensa",
     view: <EdiblePage />,
-    private: true
+    private: true,
   },
 };

@@ -15,8 +15,8 @@ const EditAction = ({
       icon="Edit"
       variant="default"
       className={className}
-      onClick={() =>  {        
-        openEditModal(edible.id)
+      onClick={() => {
+        openEditModal(edible.id);
       }}
     />
   );

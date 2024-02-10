@@ -1,2 +1,1 @@
-
-export type StockLevel = "low" | "medium" | "high"
+export type StockLevel = "low" | "medium" | "high";

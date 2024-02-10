@@ -22,7 +22,7 @@ export type EditMenuFormType = {
 
 const EditMenuFormValidatorSchema = z.object({
   menuItems: z.array(
-    EdibleCategoryValidatorSchema.or(EdibleCategoryCreateValidatorSchema)
+    EdibleCategoryValidatorSchema.or(EdibleCategoryCreateValidatorSchema),
   ),
 });
 
@@ -49,7 +49,7 @@ const EditMenu = () => {
           console.error("ERROR", e);
         });
     },
-    [close, menuItems, updateMenu]
+    [close, menuItems, updateMenu],
   );
 
   return (

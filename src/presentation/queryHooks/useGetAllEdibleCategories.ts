@@ -4,7 +4,8 @@ import { useQuery } from "react-query";
 import useRepositoryContext from "../helpers/repositoryContext";
 
 const useGetAllEdibleCategories = () => {
-  const repository = useRepositoryContext<EdibleCategoryRepository>("edibleCategory")
+  const repository =
+    useRepositoryContext<EdibleCategoryRepository>("edibleCategory");
   const service = EdibleCategoryService(repository);
 
   const respEdibleCategoriesQuery = useQuery(["edible-menu"], () =>
@@ -13,7 +14,7 @@ const useGetAllEdibleCategories = () => {
         field: "order",
         order: "ASC",
       },
-    })
+    }),
   );
   return respEdibleCategoriesQuery;
 };

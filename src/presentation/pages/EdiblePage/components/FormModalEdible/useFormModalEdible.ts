@@ -18,7 +18,7 @@ function useFormModalEdible() {
         },
       });
     },
-    [closeEditModal, edibleList, updateEdible]
+    [closeEditModal, edibleList, updateEdible],
   );
 
   return {

@@ -14,7 +14,7 @@ type NumberFormInputProps = {
   source: string;
   placeholder?: string;
   helperText?: string;
-  className?: string  
+  className?: string;
 };
 
 const NumberFormInput = ({
@@ -27,7 +27,7 @@ const NumberFormInput = ({
   const form = useFormContext();
 
   return (
-    <FormField      
+    <FormField
       control={form.control}
       name={source}
       render={({ field }) => (

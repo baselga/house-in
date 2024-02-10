@@ -11,7 +11,7 @@ type EdibleCategoryDTO = {
 };
 
 function dtoToEdibleCategory(
-  edibleCategoryDto: EdibleCategoryDTO
+  edibleCategoryDto: EdibleCategoryDTO,
 ): EdibleCategory {
   return {
     id: edibleCategoryDto.id,
@@ -25,7 +25,7 @@ export const ApiEdibleCategoryRepository: EdibleCategoryRepository = {
   getList: async (queryParams: QueryParams) => {
     const { data, total } = await http.get<EdibleCategoryDTO[]>(
       "http://localhost:3001/edible-categories",
-      queryParams
+      queryParams,
     );
 
     return {
@@ -43,21 +43,21 @@ export const ApiEdibleCategoryRepository: EdibleCategoryRepository = {
 
     const edibleCategory = await http.post<EdibleCategory>(
       "http://localhost:3001/edible-categories",
-      body
+      body,
     );
     return edibleCategory;
   },
   update: async (data: EdibleCategory) => {
     const edibleDto = await http.put<EdibleCategoryDTO>(
       `http://localhost:3001/edible-categories/${data.id}`,
-      data
+      data,
     );
     return dtoToEdibleCategory(edibleDto);
   },
 
   delete: async (id: EdibleCategoryId) => {
     return await http.delete<void>(
-      `http://localhost:3001/edible-categories/${id}`
+      `http://localhost:3001/edible-categories/${id}`,
     );
   },
 };

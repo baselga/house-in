@@ -11,7 +11,7 @@ import {
 
 export const updateAllEdibleCategories = async (
   repository: EdibleCategoryRepository,
-  data: (EdibleCategoryCreate | EdibleCategory)[]
+  data: (EdibleCategoryCreate | EdibleCategory)[],
 ) => {
   const values = data.map((each) => {
     if (!each.id) {
@@ -37,6 +37,6 @@ export const updateAllEdibleCategories = async (
         });
       }
       return repository.update(each);
-    })
+    }),
   );
 };

@@ -10,10 +10,12 @@ import { EdiblePageProvider } from "./context";
 
 const EdiblePage = () => {
   return (
-    <RepositoryProvider repository={{
-      edible: ApiEdibleRepository,
-      edibleCategory: ApiEdibleCategoryRepository
-    }}>
+    <RepositoryProvider
+      repository={{
+        edible: ApiEdibleRepository,
+        edibleCategory: ApiEdibleCategoryRepository,
+      }}
+    >
       <EdiblePageProvider>
         <LayoutPage>
           <h1 className="text-3xl font-bold pb-6 text-stone-800">Despensa</h1>

@@ -28,8 +28,10 @@ const Header: React.FC = () => {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-            <NavigationMenuItem>              
-              <Button onClick={authContext.logout} variant="ghost">Salir</Button>
+            <NavigationMenuItem>
+              <Button onClick={authContext.logout} variant="ghost">
+                Salir
+              </Button>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

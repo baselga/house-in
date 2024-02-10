@@ -14,7 +14,7 @@ type TextFormInputProps = {
   source: string;
   placeholder?: string;
   helperText?: string;
-  type?: "text" | "password"
+  type?: "text" | "password";
 };
 
 const TextFormInput = ({
@@ -22,7 +22,7 @@ const TextFormInput = ({
   source,
   placeholder,
   helperText,
-  type = "text"
+  type = "text",
 }: TextFormInputProps) => {
   const form = useFormContext();
 

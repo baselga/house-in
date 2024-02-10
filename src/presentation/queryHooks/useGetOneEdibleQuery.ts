@@ -13,7 +13,7 @@ const useGetOneEdibleQuery = (id: EdibleId | false) => {
     () => service.getOneEdible(id || ""),
     {
       enabled: !!id,
-    }
+    },
   );
 
   return respEdibleQuery;

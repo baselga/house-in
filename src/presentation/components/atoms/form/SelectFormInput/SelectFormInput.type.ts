@@ -1,6 +1,5 @@
-
-export type SelectFormInputOptionValue = string | number
-export type SelectFormInputOptionLabel = string | number
+export type SelectFormInputOptionValue = string | number;
+export type SelectFormInputOptionLabel = string | number;
 
 export type SelectFormInputOption = {
   value: SelectFormInputOptionValue;

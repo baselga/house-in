@@ -3,21 +3,21 @@ import {
   SelectFormInputOptionValue,
 } from "./SelectFormInput.type";
 
-export function handleSigleChange(  
+export function handleSigleChange(
   option: SelectFormInputOption | null,
-  onChange: (value: string | number | (string | number)[] | [] | null) => void
-) {  
+  onChange: (value: string | number | (string | number)[] | [] | null) => void,
+) {
   if (option === null) {
     onChange(null);
   } else {
     onChange(option?.value || null);
-  } 
+  }
 }
 
-export function handleMultiChange(  
+export function handleMultiChange(
   option: readonly SelectFormInputOption[] | null,
-  onChange: (value: string | number | (string | number)[] | [] | null) => void
-) {  
+  onChange: (value: string | number | (string | number)[] | [] | null) => void,
+) {
   if (option === null) {
     onChange(null);
   } else {
@@ -26,8 +26,11 @@ export function handleMultiChange(
 }
 
 export function getValue(
-  value: SelectFormInputOptionValue | readonly SelectFormInputOptionValue[] | null,
-  options: SelectFormInputOption[]
+  value:
+    | SelectFormInputOptionValue
+    | readonly SelectFormInputOptionValue[]
+    | null,
+  options: SelectFormInputOption[],
 ): SelectFormInputOption | SelectFormInputOption[] | null {
   if (!value) return null;
 

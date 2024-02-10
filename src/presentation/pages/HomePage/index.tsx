@@ -1,5 +1,5 @@
-import LayoutPage from "@/presentation/components/templates/LayoutPage"
-import CardEdiblesHome from "./components/CardEdiblesHome"
+import LayoutPage from "@/presentation/components/templates/LayoutPage";
+import CardEdiblesHome from "./components/CardEdiblesHome";
 
 const HomePage = () => {
   return (
@@ -7,8 +7,8 @@ const HomePage = () => {
       <div className="grid grid-cols-2">
         <CardEdiblesHome />
       </div>
-    </LayoutPage>    
-  )
-}
+    </LayoutPage>
+  );
+};
 
-export default HomePage
+export default HomePage;

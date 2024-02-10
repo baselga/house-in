@@ -4,14 +4,14 @@ import { EdibleRepository } from "../domain/EdibleRepository";
 import { Edible, EdibleId } from "../domain/Edible";
 
 type EdibleDTO = {
-  id: string,
-  name: string,
-  stock: number,
-  minStock: number,
-  optimalStock: number,
-  categoryIds?: string[],
-  trash: boolean
-}
+  id: string;
+  name: string;
+  stock: number;
+  minStock: number;
+  optimalStock: number;
+  categoryIds?: string[];
+  trash: boolean;
+};
 
 function dtoToEdible(edibleDto: EdibleDTO): Edible {
   return {
@@ -21,32 +21,32 @@ function dtoToEdible(edibleDto: EdibleDTO): Edible {
     minStock: edibleDto.minStock,
     optimalStock: edibleDto.optimalStock,
     categoryIds: edibleDto.categoryIds,
-    trash: edibleDto.trash,    
-  }
+    trash: edibleDto.trash,
+  };
 }
 
 export const ApiEdibleRepository: EdibleRepository = {
   getOne: async (id: EdibleId) => {
-    const edibleDto = await http.getOne<EdibleDTO>(`http://localhost:3001/edibles/${id}`)
-    return dtoToEdible(edibleDto)
+    const edibleDto = await http.getOne<EdibleDTO>(
+      `http://localhost:3001/edibles/${id}`,
+    );
+    return dtoToEdible(edibleDto);
   },
 
   getEdibles: async (queryParams: QueryParams) => {
-    const { filter } = queryParams
-    const finalFilters: Record<string, (string | number)> = {}
-    if(filter?.categoryId) {
-      finalFilters.categoryIds_like = filter.categoryId
+    const { filter } = queryParams;
+    const finalFilters: Record<string, string | number> = {};
+    if (filter?.categoryId) {
+      finalFilters.categoryIds_like = filter.categoryId;
     }
-    queryParams.filter = finalFilters
+    queryParams.filter = finalFilters;
     const { data, total } = await http.get<EdibleDTO[]>(
       "http://localhost:3001/edibles",
-      queryParams
+      queryParams,
     );
 
     return {
-      data: data.map(
-        (edibleDto) => dtoToEdible(edibleDto)
-      ),
+      data: data.map((edibleDto) => dtoToEdible(edibleDto)),
       total,
     };
   },
@@ -62,16 +62,22 @@ export const ApiEdibleRepository: EdibleRepository = {
       trash: data.trash,
     };
 
-    const edible = await http.post<Edible>("http://localhost:3001/edibles", body);    
-    return edible
+    const edible = await http.post<Edible>(
+      "http://localhost:3001/edibles",
+      body,
+    );
+    return edible;
   },
 
-  updateEdible:async (data: Edible) => {
-    const edibleDto = await http.put<EdibleDTO>(`http://localhost:3001/edibles/${data.id}`, data)
-    return dtoToEdible(edibleDto)
+  updateEdible: async (data: Edible) => {
+    const edibleDto = await http.put<EdibleDTO>(
+      `http://localhost:3001/edibles/${data.id}`,
+      data,
+    );
+    return dtoToEdible(edibleDto);
   },
 
   deleteEdible: async (id: EdibleId) => {
-    return await http.delete<void>(`http://localhost:3001/edibles/${id}`)
-  }
-}
+    return await http.delete<void>(`http://localhost:3001/edibles/${id}`);
+  },
+};

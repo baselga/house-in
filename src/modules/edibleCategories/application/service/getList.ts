@@ -9,7 +9,7 @@ export type EdibleCategoryQueryParams = QueryParams & {
 
 export const getListEdibleCategories = (
   repository: EdibleCategoryRepository,
-  queryParams: EdibleCategoryQueryParams
+  queryParams: EdibleCategoryQueryParams,
 ) => {
   const { sort, ...rest } = queryParams;
   const field = sort?.field ?? "order";
@@ -17,6 +17,6 @@ export const getListEdibleCategories = (
 
   return repository.getList({
     sort: { field, order },
-    ...rest
+    ...rest,
   });
 };

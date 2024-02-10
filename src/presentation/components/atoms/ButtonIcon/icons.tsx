@@ -8,7 +8,7 @@ import {
   Cross2Icon,
   Pencil2Icon,
   CheckIcon,
-  DragHandleDots2Icon
+  DragHandleDots2Icon,
 } from "@radix-ui/react-icons";
 
 export const iconsObject = {
@@ -21,5 +21,5 @@ export const iconsObject = {
   Cross: Cross2Icon,
   Edit: Pencil2Icon,
   Check: CheckIcon,
-  DragIcon: DragHandleDots2Icon
+  DragIcon: DragHandleDots2Icon,
 };

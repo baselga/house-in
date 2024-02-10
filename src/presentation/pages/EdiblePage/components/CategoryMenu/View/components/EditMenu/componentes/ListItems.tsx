@@ -25,14 +25,14 @@ const ListItems = () => {
         arrayMove<EdibleCategory | EdibleCategoryCreate>(
           items,
           oldIndex,
-          newIndex
+          newIndex,
         ).map((value, index) => ({
           ...value,
           order: index,
-        }))
+        })),
       );
     },
-    [getValues, setValue]
+    [getValues, setValue],
   );
 
   return (

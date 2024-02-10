@@ -15,7 +15,7 @@ const schema = {
 
 export const EdibleCategoryValidatorSchema = z.object({
   id: z.string(),
-  ...schema,  
+  ...schema,
 });
 
 export const EdibleCategoryCreateValidatorSchema = z.object(schema);
