@@ -43,7 +43,7 @@ type EdiblePageContextType = {
 };
 
 export const EdiblePageContext = createContext<EdiblePageContextType | null>(
-  null
+  null,
 );
 
 export const EdiblePageProvider = ({
@@ -89,7 +89,7 @@ export const EdiblePageProvider = ({
         },
       });
     },
-    [edibleList, upStockMutation]
+    [edibleList, upStockMutation],
   );
 
   const onDownStock = useCallback(
@@ -100,7 +100,7 @@ export const EdiblePageProvider = ({
         },
       });
     },
-    [downStockMutation, edibleList]
+    [downStockMutation, edibleList],
   );
 
   const openEditModal = useCallback((id: EdibleId) => {
@@ -118,7 +118,7 @@ export const EdiblePageProvider = ({
         ...newFilter,
       });
     },
-    [filter]
+    [filter],
   );
 
   return (
@@ -148,12 +148,11 @@ const useEdiblePageContext = () => {
 
   if (!context) {
     throw new Error(
-      "useEdiblePageContext must be used inside the EdiblePageProvider"
+      "useEdiblePageContext must be used inside the EdiblePageProvider",
     );
   }
 
   return context;
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default useEdiblePageContext;

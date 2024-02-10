@@ -1,5 +1,8 @@
 import { EdibleCategoryService } from "@/modules/edibleCategories/application/service/EdibleCategoryService";
-import { EdibleCategory, EdibleCategoryCreate } from "@/modules/edibleCategories/domain/EdibleCategory";
+import {
+  EdibleCategory,
+  EdibleCategoryCreate,
+} from "@/modules/edibleCategories/domain/EdibleCategory";
 import { EdibleCategoryRepository } from "@/modules/edibleCategories/domain/EdibleCategoryRepository";
 import useRepositoryContext from "@/presentation/helpers/repositoryContext";
 import useGetAllEdibleCategories from "@/presentation/queryHooks/useGetAllEdibleCategories";
@@ -16,8 +19,10 @@ type CategoryMenuContextType = {
         unknown
       >
     | Record<string, never>;
-  updateMenu: (values: (EdibleCategory | EdibleCategoryCreate)[]) => Promise<EdibleCategory[]>;
-  isUpdating: boolean
+  updateMenu: (
+    values: (EdibleCategory | EdibleCategoryCreate)[],
+  ) => Promise<EdibleCategory[]>;
+  isUpdating: boolean;
 };
 
 export const CategoryMenuContext =
@@ -28,8 +33,9 @@ export const CategoryMenuContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const repository = useRepositoryContext<EdibleCategoryRepository>("edibleCategory");
-  const menuItems = useGetAllEdibleCategories()
+  const repository =
+    useRepositoryContext<EdibleCategoryRepository>("edibleCategory");
+  const menuItems = useGetAllEdibleCategories();
   const service = EdibleCategoryService(repository);
   const mutation = useMutation(service.updateAll);
 
@@ -37,7 +43,7 @@ export const CategoryMenuContextProvider = ({
     (values: (EdibleCategory | EdibleCategoryCreate)[]) => {
       return mutation.mutateAsync(values);
     },
-    [mutation]
+    [mutation],
   );
 
   return (
@@ -45,7 +51,7 @@ export const CategoryMenuContextProvider = ({
       value={{
         menuItems,
         updateMenu,
-        isUpdating: mutation.isLoading
+        isUpdating: mutation.isLoading,
       }}
     >
       {children}
@@ -58,12 +64,11 @@ const useCategoryMenuContext = () => {
 
   if (!context) {
     throw new Error(
-      "useCategoryMenuContext must be used inside the CategoryMenuContextProvider"
+      "useCategoryMenuContext must be used inside the CategoryMenuContextProvider",
     );
   }
 
   return context;
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default useCategoryMenuContext;
