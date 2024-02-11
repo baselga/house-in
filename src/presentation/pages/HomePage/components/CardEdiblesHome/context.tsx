@@ -12,6 +12,10 @@ export const CardEdibleHomeProvider = ({
 }) => {
   const queryData = useGetEdibleQuery({
     pagination: { perPage: 5 },
+    sort: {
+      field: "name",
+      order: "ASC",
+    },
   });
 
   return (

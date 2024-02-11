@@ -1,5 +1,5 @@
 import { ApiEdibleCategoryRepository } from "@/modules/edibleCategories/infraestructure/ApiEdibleCategoryRepository";
-import { ApiEdibleRepository } from "@/modules/edibles/infraestructure/ApiEdibleRepository";
+import { FirebaseEdibleRepository } from "@/modules/edibles/infraestructure/FirebaseEdibleRepository";
 import LayoutPage from "@/presentation/components/templates/LayoutPage";
 import { RepositoryProvider } from "@/presentation/helpers/repositoryContext";
 import CardAddEdible from "./components/CardAddEdible";
@@ -12,7 +12,7 @@ const EdiblePage = () => {
   return (
     <RepositoryProvider
       repository={{
-        edible: ApiEdibleRepository,
+        edible: FirebaseEdibleRepository,
         edibleCategory: ApiEdibleCategoryRepository,
       }}
     >

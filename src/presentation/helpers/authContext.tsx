@@ -14,7 +14,7 @@ import {
   ReactNode,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../config/firebase";
+import { auth } from "../../modules/shared/infraestructure/firebase/config";
 import { SECTIONS } from "../config/sections";
 
 export type LoginProps = {
